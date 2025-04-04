@@ -64,7 +64,9 @@ fun TodoScreen(viewModel: TodoViewModel) {
             items(viewModel.todoList) { item ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         when (item) {
@@ -77,7 +79,7 @@ fun TodoScreen(viewModel: TodoViewModel) {
                         onClick = { viewModel.removeItem(item) },
                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
                     ) {
-                        Text("Удалить")
+                        Text("Remove")
                     }
                 }
             }
@@ -100,7 +102,7 @@ fun PriorityDropdown(
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
-            Priority.values().forEach { priority ->
+            Priority.entries.forEach { priority ->
                 DropdownMenuItem(
                     text = { Text(priority.label) },
                     onClick = {
